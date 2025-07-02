@@ -1,0 +1,15 @@
+# İşletim Sistemi dosyaları
+.DS_Store
+Thumbs.db
+
+# Log dosyaları
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Kod Düzenleyici (IDE) ayar klasörleri
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace

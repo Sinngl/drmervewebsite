@@ -146,12 +146,21 @@
   
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   
-  <script>
+  <<script>
     const hamburger = document.querySelector('.hamburger-menu');
     const nav = document.querySelector('.main-nav');
+    const navLinks = document.querySelectorAll('.main-nav a'); 
+
     hamburger.addEventListener('click', () => {
       nav.classList.toggle('nav-open');
       hamburger.classList.toggle('is-active');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('nav-open'); 
+        hamburger.classList.remove('is-active'); 
+      });
     });
   </script>
 </body>

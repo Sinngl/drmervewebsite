@@ -130,7 +130,7 @@ header {
 .about {
   max-width: 900px;
   margin: 0 auto;
-  text-align: center; /* Ana metinler ortalı */
+  text-align: center; 
 }
 
 .about h2 {
@@ -151,13 +151,13 @@ header {
     padding: 20px;
     border-radius: 8px;
     line-height: 1.7;
-    text-align: left; /* Listeler sola dayalı */
+    text-align: left; 
     margin-top: 30px;
 }
 
 .about .publications b {
   display: block;
-  text-align: center; /* Liste başlıkları ortalı */
+  text-align: center; 
 }
 
 
@@ -168,7 +168,7 @@ header {
 .services-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 40px 0; /* Sadece dikey boşluk 15px, yatay boşluk 0 */
+  gap: 40px 0;
 }
 
 .service {
@@ -268,9 +268,8 @@ header {
 .hamburger-menu.is-active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
 
-/******************************************/
 /* --- MOBİL UYUMLULUK (MEDIA QUERIES) ---*/
-/******************************************/
+
 
 /* Geniş Tabletler ve Altı (iPad Pro gibi) */
 @media (max-width: 1024px) {

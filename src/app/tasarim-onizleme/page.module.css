@@ -1,0 +1,1135 @@
+/*
+ * Route-scoped design tokens and shared classes for /tasarim-onizleme.
+ * Nothing here is imported by, or leaks into, any other route.
+ * Colors verified for WCAG AA — see docs/VISUAL_DIRECTION.md Section 11.
+ * Rule: text on --dp-sage or --dp-mist must be --dp-ink, never white/muted.
+ */
+
+.root {
+  --dp-ink: #18322f;
+  --dp-pine: #245c55;
+  --dp-deep-pine: #193f3a;
+  --dp-sage: #a9c1b6;
+  --dp-mist: #e8f0ec;
+  --dp-sand: #f5f1e9;
+  --dp-paper: #fffcf7;
+  --dp-terracotta: #a9543f;
+  --dp-terracotta-hover: #8a4331;
+  --dp-muted: #5f6f69;
+  --dp-border: #d6ddd7;
+  --dp-white: #ffffff;
+
+  /* Dedicated validation-state tokens — intentionally distinct in hue from
+     Terracotta (conversion CTA) so state colors are never mistaken for the
+     appointment action. See docs/VISUAL_DIRECTION.md Section 4. */
+  --dp-error-fg: #a4231a;
+  --dp-error-bg: #fbeae8;
+  --dp-error-border: #d9534f;
+  --dp-success-fg: var(--dp-deep-pine);
+  --dp-success-bg: var(--dp-mist);
+  --dp-success-border: var(--dp-pine);
+
+  --dp-font-heading: var(--font-lora), Georgia, "Times New Roman", serif;
+  --dp-font-body: var(--font-manrope), Arial, Helvetica, sans-serif;
+
+  --dp-radius-sm: 8px;
+  --dp-radius-md: 14px;
+  --dp-space-1: 8px;
+  --dp-space-2: 16px;
+  --dp-space-3: 24px;
+  --dp-space-4: 40px;
+  --dp-space-5: 64px;
+  --dp-max-width: 1180px;
+
+  /* Vertical rhythm — responsive section padding, see docs/VISUAL_DIRECTION.md Section 6 */
+  --dp-section-padding: 96px;
+
+  background: var(--dp-paper);
+  color: var(--dp-ink);
+  font-family: var(--dp-font-body);
+  line-height: 1.6;
+}
+
+.root :global(*) {
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root :global(*) {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ---- Layout ---- */
+
+.container {
+  max-width: var(--dp-max-width);
+  margin: 0 auto;
+  padding: 0 var(--dp-space-3);
+}
+
+.section {
+  padding: var(--dp-section-padding) 0;
+  border-bottom: 1px solid var(--dp-border);
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.sectionAlt {
+  background: var(--dp-sand);
+}
+
+.sectionMist {
+  background: var(--dp-mist);
+}
+
+.sectionKicker {
+  display: block;
+  font-family: var(--dp-font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dp-pine);
+  margin-bottom: var(--dp-space-1);
+}
+
+.sectionHeading {
+  font-family: var(--dp-font-heading);
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin: 0 0 var(--dp-space-2) 0;
+  color: var(--dp-ink);
+}
+
+.sectionIntro {
+  max-width: 62ch;
+  color: var(--dp-muted);
+  font-size: 1rem;
+  margin: 0 0 var(--dp-space-3) 0;
+}
+
+@media (max-width: 1024px) {
+  .root {
+    --dp-section-padding: 72px;
+  }
+}
+
+@media (max-width: 640px) {
+  .root {
+    --dp-section-padding: 56px;
+  }
+  .container {
+    padding: 0 var(--dp-space-2);
+  }
+}
+
+/* ---- Typography samples ---- */
+
+.display {
+  font-family: var(--dp-font-heading);
+  font-weight: 600;
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.h1 {
+  font-family: var(--dp-font-heading);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.h2 {
+  font-family: var(--dp-font-heading);
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.h3 {
+  font-family: var(--dp-font-heading);
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.lead {
+  font-family: var(--dp-font-body);
+  font-size: 1.15rem;
+  color: var(--dp-ink);
+  margin: 0;
+}
+
+.bodyText {
+  font-family: var(--dp-font-body);
+  font-size: 1rem;
+  color: var(--dp-ink);
+  margin: 0;
+}
+
+.smallText {
+  font-family: var(--dp-font-body);
+  font-size: 0.85rem;
+  color: var(--dp-muted);
+  margin: 0;
+}
+
+.buttonLabelSample {
+  font-family: var(--dp-font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+
+.typeGrid {
+  display: grid;
+  gap: var(--dp-space-3);
+}
+
+.typeRow {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: var(--dp-space-3);
+  align-items: baseline;
+  padding: var(--dp-space-2) 0;
+  border-top: 1px solid var(--dp-border);
+}
+
+.typeRow:first-child {
+  border-top: none;
+}
+
+.typeLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dp-muted);
+}
+
+@media (max-width: 640px) {
+  .typeRow {
+    grid-template-columns: 1fr;
+    gap: var(--dp-space-1);
+  }
+}
+
+/* ---- Color palette ---- */
+
+.swatchGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--dp-space-3);
+}
+
+.swatchCard {
+  border: 1px solid var(--dp-border);
+  border-radius: var(--dp-radius-md);
+  overflow: hidden;
+  background: var(--dp-white);
+}
+
+.swatchColor {
+  height: 88px;
+  border-bottom: 1px solid var(--dp-border);
+}
+
+.swatchBody {
+  padding: var(--dp-space-2);
+}
+
+.swatchName {
+  font-family: var(--dp-font-heading);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin: 0 0 4px 0;
+}
+
+.swatchHex {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: var(--dp-muted);
+  margin: 0 0 8px 0;
+}
+
+.swatchUse {
+  font-size: 0.9rem;
+  color: var(--dp-ink);
+  margin: 0;
+}
+
+/* ---- Buttons and links ---- */
+
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dp-space-2);
+  align-items: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 var(--dp-space-3);
+  border-radius: var(--dp-radius-sm);
+  font-family: var(--dp-font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--dp-terracotta);
+  outline-offset: 2px;
+}
+
+.btnPrimary {
+  composes: btn;
+  background: var(--dp-pine);
+  color: var(--dp-white);
+}
+
+.btnPrimary:hover {
+  background: var(--dp-deep-pine);
+}
+
+.btnSecondary {
+  composes: btn;
+  background: var(--dp-white);
+  color: var(--dp-pine);
+  border-color: var(--dp-pine);
+}
+
+.btnSecondary:hover {
+  background: var(--dp-mist);
+}
+
+.btnSecondary:active {
+  background: var(--dp-sage);
+}
+
+/*
+ * Conversion action only — reserved exclusively for "Randevu Oluştur".
+ * Every appointment CTA in the preview (header, mobile menu, hero,
+ * buttons-and-links) must use this exact class for visual consistency.
+ */
+.btnAppointment {
+  composes: btn;
+  background: var(--dp-terracotta);
+  color: var(--dp-white);
+  font-weight: 700;
+}
+
+.btnAppointment:hover {
+  background: var(--dp-terracotta-hover);
+}
+
+.btnAppointment:active {
+  background: var(--dp-terracotta-hover);
+}
+
+.btnDisabled {
+  composes: btn;
+  background: var(--dp-border);
+  color: var(--dp-muted);
+  cursor: not-allowed;
+}
+
+.textLink {
+  color: var(--dp-pine);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 4px 2px;
+}
+
+.textLink:hover {
+  color: var(--dp-deep-pine);
+}
+
+.textLink:focus-visible {
+  outline: 3px solid var(--dp-terracotta);
+  outline-offset: 2px;
+}
+
+.stateLabel {
+  font-size: 0.75rem;
+  color: var(--dp-muted);
+  display: block;
+  margin-top: 6px;
+}
+
+/* ---- Header concept ---- */
+
+.headerConcept {
+  border: 1px solid var(--dp-border);
+  border-radius: var(--dp-radius-md);
+  overflow: hidden;
+  background: var(--dp-white);
+}
+
+.headerBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: var(--dp-space-2);
+  padding: var(--dp-space-2);
+}
+
+.headerBrand {
+  font-family: var(--dp-font-heading);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--dp-ink);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.headerNav {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.headerNavLink {
+  display: inline-block;
+  color: var(--dp-ink);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 8px 2px;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+}
+
+.headerNavLink:hover,
+.headerNavLink:focus-visible {
+  border-bottom-color: var(--dp-pine);
+  outline: none;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: var(--dp-space-2);
+}
+
+/* Compact button padding for the header context specifically — the
+   generic .btn padding stays roomier everywhere else on the page. */
+.headerAppointmentBtn {
+  composes: btnAppointment;
+  padding: 0 var(--dp-space-2);
+  font-size: 0.9rem;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  width: 28px;
+  flex-shrink: 0;
+}
+
+.hamburgerBar {
+  height: 2px;
+  background: var(--dp-ink);
+  border-radius: 2px;
+}
+
+/*
+ * The full desktop nav needs real room for the brand, 7 nav labels and the
+ * appointment action to stay on one line each (see docs/VISUAL_DIRECTION.md
+ * Section 5). Below the container's own max-width (--dp-max-width: 1180px)
+ * the container shrinks 1:1 with the viewport, so the compact (hamburger)
+ * menu switches on there — well before wrapping could occur — rather than
+ * compressing type to force a fit. At or above 1180px the container is
+ * capped at the same width regardless of viewport, which is where the
+ * full nav is confirmed to fit with margin.
+ */
+@media (max-width: 1180px) {
+  .headerNav {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* Static mockup of the mobile-open menu state, shown regardless of viewport
+   so reviewers don't need to resize their browser to see it. */
+.mobileMenuFrame {
+  max-width: 320px;
+  margin-top: var(--dp-space-3);
+  border: 1px solid var(--dp-border);
+  border-radius: var(--dp-radius-md);
+  overflow: hidden;
+  background: var(--dp-white);
+}
+
+.mobileMenuFrameBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--dp-space-2);
+  border-bottom: 1px solid var(--dp-border);
+}
+
+.mobileMenuFrameLabel {
+  font-size: 0.75rem;
+  color: var(--dp-muted);
+}
+
+.mobileMenuFrameClose {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.mobileMenuFrameClose::before,
+.mobileMenuFrameClose::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--dp-ink);
+}
+
+.mobileMenuFrameClose::before {
+  transform: rotate(45deg);
+}
+
+.mobileMenuFrameClose::after {
+  transform: rotate(-45deg);
+}
+
+.mobileMenuFrameList {
+  list-style: none;
+  margin: 0;
+  padding: var(--dp-space-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--dp-space-1);
+  background: var(--dp-mist);
+}
+
+/* ---- Hero concept ---- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--dp-space-4);
+  align-items: center;
+}
+
+.heroEyebrow {
+  composes: sectionKicker;
+}
+
+/* Hero H1 uses its own clamp, independent of the .display sample in the
+   Typography section, so it doesn't overwhelm the photography column. */
+.heroHeadline {
+  font-family: var(--dp-font-heading);
+  font-weight: 600;
+  font-size: clamp(2.75rem, 4.2vw, 4rem);
+  line-height: 1.15;
+  margin: var(--dp-space-1) 0;
+}
+
+.heroSupport {
+  composes: lead;
+  color: var(--dp-muted);
+  max-width: 46ch;
+  margin: var(--dp-space-2) 0 var(--dp-space-4) 0;
+}
+
+.heroCtas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dp-space-2);
+  margin-bottom: var(--dp-space-4);
+}
+
+/*
+ * Small-mobile only: stack the two hero CTAs full-width so each stays
+ * comfortably one line rather than wrapping mid-label at narrow widths.
+ * Scoped to .heroCtas' own children only — .heroIndicators is a separate
+ * class and is untouched, so the factual indicator pills never stretch
+ * to full width or read as buttons.
+ */
+@media (max-width: 480px) {
+  .heroCtas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .heroCtas > .btnAppointment,
+  .heroCtas > .btnSecondary {
+    width: 100%;
+  }
+}
+
+.heroIndicators {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dp-space-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.heroIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--dp-mist);
+  color: var(--dp-ink);
+  border-radius: var(--dp-radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.heroPhotoPlaceholder {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--dp-radius-md);
+  background: linear-gradient(155deg, var(--dp-sage) 0%, var(--dp-mist) 55%, var(--dp-sand) 100%);
+  border: 1px solid var(--dp-border);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.heroPhotoShapeA,
+.heroPhotoShapeB {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.heroPhotoShapeA {
+  width: 55%;
+  aspect-ratio: 1;
+  background: var(--dp-pine);
+  opacity: 0.18;
+  top: -10%;
+  right: -12%;
+}
+
+.heroPhotoShapeB {
+  width: 35%;
+  aspect-ratio: 1;
+  background: var(--dp-terracotta);
+  opacity: 0.15;
+  bottom: 8%;
+  left: -8%;
+}
+
+.heroPhotoLabel {
+  position: relative;
+  margin: var(--dp-space-2);
+  padding: var(--dp-space-2);
+  background: rgba(255, 252, 247, 0.92);
+  border-radius: var(--dp-radius-sm);
+  font-size: 0.8rem;
+  color: var(--dp-muted);
+}
+
+/*
+ * Internal annotation only — restrained Terracotta text/border is
+ * intentional (see docs/VISUAL_DIRECTION.md Section 4), but this must
+ * never read as a clickable control: no fill, no hover state, small
+ * type, and a modest radius rather than a pill/chip shape.
+ */
+.draftTag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--dp-terracotta);
+  background: transparent;
+  border: 1px solid var(--dp-terracotta);
+  border-radius: var(--dp-radius-sm);
+  padding: 4px 10px;
+  margin-bottom: var(--dp-space-2);
+  cursor: default;
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .heroPhotoPlaceholder {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* ---- Cards ---- */
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--dp-space-3);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dp-space-1);
+  padding: var(--dp-space-3);
+  background: var(--dp-white);
+  border: 1px solid var(--dp-border);
+  border-top: 3px solid var(--dp-pine);
+  border-radius: var(--dp-radius-md);
+  height: 100%;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.card:hover,
+.card:focus-within {
+  border-color: var(--dp-pine);
+  border-top-color: var(--dp-deep-pine);
+  box-shadow: 0 4px 16px rgba(24, 50, 47, 0.08);
+  transform: translateY(-2px);
+}
+
+.cardCategory {
+  composes: sectionKicker;
+  margin-bottom: 0;
+}
+
+.cardTitle {
+  composes: h3;
+  margin-top: 2px;
+}
+
+.cardSupport {
+  composes: bodyText;
+  color: var(--dp-muted);
+  flex-grow: 1;
+}
+
+.cardLink {
+  composes: textLink;
+  align-self: flex-start;
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cardLinkArrow {
+  transition: transform 0.15s ease;
+}
+
+.card:hover .cardLinkArrow,
+.card:focus-within .cardLinkArrow {
+  transform: translateX(3px);
+}
+
+/* ---- International family band ---- */
+
+.intlBand {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--dp-space-4);
+  align-items: center;
+  padding: var(--dp-space-4);
+  background: var(--dp-mist);
+  border-radius: var(--dp-radius-md);
+}
+
+.intlList {
+  list-style: none;
+  margin: var(--dp-space-2) 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dp-space-1);
+}
+
+.intlListItem {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.95rem;
+  color: var(--dp-ink);
+}
+
+.intlMarker {
+  color: var(--dp-pine);
+  font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .intlBand {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Process preview ---- */
+
+.processWrap {
+  position: relative;
+}
+
+/*
+ * Connecting line sits at the vertical center of the number circles and
+ * behind them (z-index below .processNumber), so opaque circles visually
+ * "break" the line at each step instead of it crossing through text.
+ * Shown only for the true single-row 4-column desktop layout — at the
+ * 2-column tablet layout a straight line would misleadingly connect
+ * non-adjacent steps, so it is hidden there and on mobile in favor of a
+ * vertical line instead.
+ */
+.processLineHorizontal {
+  display: none;
+  position: absolute;
+  /* step padding-top (--dp-space-3) + half the 36px number circle */
+  top: calc(var(--dp-space-3) + 18px);
+  left: 12.5%;
+  right: 12.5%;
+  height: 2px;
+  background: var(--dp-border);
+  z-index: 0;
+}
+
+.processLineVertical {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--dp-space-3) + 18px);
+  width: 2px;
+  background: var(--dp-border);
+  z-index: 0;
+}
+
+.processList {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--dp-space-3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: process;
+}
+
+.processStep {
+  position: relative;
+  padding: var(--dp-space-3);
+  background: var(--dp-white);
+  border: 1px solid var(--dp-border);
+  border-radius: var(--dp-radius-md);
+}
+
+.processNumber {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--dp-pine);
+  color: var(--dp-white);
+  font-family: var(--dp-font-heading);
+  font-weight: 600;
+  margin-bottom: var(--dp-space-1);
+}
+
+.processLabel {
+  composes: h3;
+  font-size: 1.05rem;
+}
+
+@media (min-width: 1025px) {
+  .processLineHorizontal {
+    display: block;
+  }
+}
+
+@media (max-width: 1024px) {
+  .processList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .processList {
+    grid-template-columns: 1fr;
+  }
+  .processLineVertical {
+    display: block;
+  }
+}
+
+/* ---- Form controls ---- */
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--dp-space-3);
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--dp-ink);
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--dp-border);
+  border-radius: var(--dp-radius-sm);
+  font-family: var(--dp-font-body);
+  font-size: 0.95rem;
+  background: var(--dp-white);
+  color: var(--dp-ink);
+}
+
+.formTextarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.formInput:focus-visible,
+.formSelect:focus-visible,
+.formTextarea:focus-visible {
+  outline: 3px solid var(--dp-terracotta);
+  outline-offset: 1px;
+  border-color: var(--dp-pine);
+}
+
+.formCheckboxRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+}
+
+.formCheckbox {
+  width: 20px;
+  height: 20px;
+}
+
+.formMessage {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--dp-radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.formMessageError {
+  composes: formMessage;
+  background: var(--dp-error-bg);
+  color: var(--dp-error-fg);
+  border: 1px solid var(--dp-error-border);
+}
+
+.formMessageSuccess {
+  composes: formMessage;
+  background: var(--dp-success-bg);
+  color: var(--dp-success-fg);
+  border: 1px solid var(--dp-success-border);
+}
+
+.formPrivacyNote {
+  composes: smallText;
+  display: block;
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Image direction ---- */
+
+.imageCompare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--dp-space-3);
+}
+
+.imageColumn {
+  padding: var(--dp-space-3);
+  border-radius: var(--dp-radius-md);
+  border: 1px solid var(--dp-border);
+}
+
+.imageColumnPrefer {
+  composes: imageColumn;
+  background: var(--dp-mist);
+}
+
+.imageColumnAvoid {
+  composes: imageColumn;
+  background: var(--dp-sand);
+}
+
+.imageColumnTitle {
+  composes: h3;
+  margin-bottom: var(--dp-space-2);
+}
+
+.imageList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.imageListItem {
+  display: flex;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--dp-ink);
+}
+
+.imageMarkerPrefer {
+  color: var(--dp-pine);
+  font-weight: 700;
+}
+
+.imageMarkerAvoid {
+  color: var(--dp-terracotta);
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .imageCompare {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Spacing / radius / shadow samples ---- */
+
+.sampleRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dp-space-3);
+  align-items: flex-end;
+}
+
+.spacingBox {
+  background: var(--dp-pine);
+  border-radius: 4px;
+}
+
+.radiusBox {
+  width: 96px;
+  height: 64px;
+  background: var(--dp-white);
+  border: 1px solid var(--dp-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--dp-muted);
+}
+
+.shadowBox {
+  width: 96px;
+  height: 64px;
+  background: var(--dp-white);
+  border-radius: var(--dp-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--dp-muted);
+}
+
+.shadowNone {
+  box-shadow: none;
+}
+
+.shadowSubtle {
+  box-shadow: 0 2px 8px rgba(24, 50, 47, 0.08);
+}
+
+.shadowMedium {
+  box-shadow: 0 6px 20px rgba(24, 50, 47, 0.12);
+}
+
+/* ---- Review banner ---- */
+
+.banner {
+  background: var(--dp-ink);
+  color: var(--dp-white);
+  padding: var(--dp-space-3) 0;
+}
+
+.bannerRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--dp-space-2);
+}
+
+.bannerTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bannerEyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dp-sage);
+}
+
+.bannerTitle {
+  font-family: var(--dp-font-heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.bannerNotice {
+  max-width: 46ch;
+  font-size: 0.85rem;
+  color: var(--dp-sage);
+}
